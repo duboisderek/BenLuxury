@@ -1,94 +1,288 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Building2, MapPin, Award, Users } from 'lucide-react';
+import { ArrowRight, Building2, MapPin, Award, Users, Star, Crown, Gem, Shield, TrendingUp, Globe, Phone } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
 import { useLanguage } from '../context/LanguageContext';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
   const { isRTL } = useLanguage();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroSlides = [
+    {
+      image: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      title: 'Luxury Living Redefined',
+      subtitle: 'Exclusive off-plan properties in prime Israeli locations'
+    },
+    {
+      image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      title: 'Investment Excellence',
+      subtitle: 'Premium real estate opportunities with guaranteed returns'
+    },
+    {
+      image: 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      title: 'Architectural Masterpieces',
+      subtitle: 'Where modern design meets timeless elegance'
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const features = [
     {
-      icon: Building2,
-      title: 'Premium Projects',
-      description: 'Exclusive off-plan properties in prime locations across Israel'
+      icon: Crown,
+      title: 'Exclusive Properties',
+      description: 'Hand-selected luxury developments in Israel\'s most prestigious locations',
+      color: 'from-gold-400 to-gold-600'
     },
     {
-      icon: MapPin,
-      title: 'Prime Locations',
-      description: 'Strategic locations in Jerusalem, Tel Aviv, Haifa, and Ashdod'
+      icon: Gem,
+      title: 'Premium Locations',
+      description: 'Prime real estate in Jerusalem, Tel Aviv, Haifa, and emerging luxury districts',
+      color: 'from-blue-400 to-blue-600'
     },
     {
-      icon: Award,
-      title: 'Expert Service',
-      description: 'Professional guidance throughout your real estate journey'
+      icon: Shield,
+      title: 'Secure Investment',
+      description: 'Guaranteed returns with comprehensive legal and financial protection',
+      color: 'from-purple-400 to-purple-600'
     },
     {
-      icon: Users,
-      title: 'Trusted Partner',
-      description: 'Years of experience in luxury real estate market'
+      icon: TrendingUp,
+      title: 'Market Leadership',
+      description: 'Over 15 years of excellence in luxury real estate development',
+      color: 'from-green-400 to-green-600'
+    }
+  ];
+
+  const stats = [
+    { number: '500+', label: 'Luxury Properties Sold', icon: Building2 },
+    { number: '98%', label: 'Client Satisfaction', icon: Star },
+    { number: '15+', label: 'Years of Excellence', icon: Award },
+    { number: '50+', label: 'Countries Served', icon: Globe }
+  ];
+
+  const testimonials = [
+    {
+      name: 'David Goldstein',
+      role: 'Real Estate Investor',
+      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150',
+      quote: 'BenLuxuryAgency delivered beyond expectations. The investment returns have been exceptional.',
+      rating: 5
+    },
+    {
+      name: 'Sarah Cohen',
+      role: 'Property Owner',
+      image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150',
+      quote: 'Professional service from start to finish. They made our dream home a reality.',
+      rating: 5
+    },
+    {
+      name: 'Michael Levy',
+      role: 'International Buyer',
+      image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=150',
+      quote: 'The multilingual support and expertise made the entire process seamless.',
+      rating: 5
     }
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              {t('home_title')}
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              {t('home_subtitle')}
-            </p>
-            <p className="text-lg mb-8 text-blue-50 max-w-2xl">
-              {t('home_description')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/projects"
-                className="inline-flex items-center px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors group"
-              >
-                {t('see_projects')}
-                <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'} group-hover:translate-x-1 transition-transform`} />
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
-              >
-                {t('contact_us')}
-              </Link>
+    <div className="min-h-screen bg-luxury-dark">
+      {/* Hero Section with Slider */}
+      <section className="relative h-screen overflow-hidden">
+        <div className="absolute inset-0">
+          {heroSlides.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                index === currentSlide ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
             </div>
+          ))}
+        </div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-20 right-20 w-32 h-32 bg-gold-gradient rounded-full opacity-20 animate-float"></div>
+        <div className="absolute bottom-40 left-10 w-24 h-24 bg-gold-gradient rounded-full opacity-30 animate-float" style={{ animationDelay: '2s' }}></div>
+
+        <div className="relative z-10 h-full flex items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="max-w-4xl animate-fade-in-up">
+              <div className="mb-6">
+                <span className="inline-block px-6 py-2 bg-gold-gradient text-luxury-dark font-semibold rounded-full text-sm uppercase tracking-wider animate-glow">
+                  Luxury Real Estate Excellence
+                </span>
+              </div>
+              
+              <h1 className="text-5xl md:text-7xl font-luxury font-bold text-white mb-6 leading-tight">
+                <span className="bg-gradient-to-r from-white via-gold-300 to-white bg-clip-text text-transparent">
+                  {heroSlides[currentSlide].title}
+                </span>
+              </h1>
+              
+              <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl leading-relaxed">
+                {heroSlides[currentSlide].subtitle}
+              </p>
+              
+              <p className="text-lg mb-10 text-gray-300 max-w-3xl leading-relaxed">
+                {t('home_description')}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-6">
+                <Link
+                  to="/projects"
+                  className="group relative inline-flex items-center px-8 py-4 bg-gold-gradient text-luxury-dark rounded-lg font-bold text-lg hover:shadow-gold transition-all duration-300 transform hover:scale-105 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 animate-shimmer"></div>
+                  {t('see_projects')}
+                  <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'} group-hover:translate-x-1 transition-transform`} />
+                </Link>
+                
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center px-8 py-4 border-2 border-gold-500 text-gold-400 rounded-lg font-bold text-lg hover:bg-gold-500 hover:text-luxury-dark transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
+                >
+                  <Phone className={`h-5 w-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                  {t('contact_us')}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide ? 'bg-gold-500 w-8' : 'bg-white/50 hover:bg-white/70'
+              }`}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 bg-gradient-to-r from-luxury-charcoal to-luxury-dark relative overflow-hidden">
+        <div className="absolute inset-0 bg-hero-pattern opacity-5"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center group animate-scale-in" style={{ animationDelay: `${index * 0.2}s` }}>
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full mb-4 group-hover:shadow-gold transition-all duration-300 transform group-hover:scale-110">
+                  <stat.icon className="h-10 w-10 text-luxury-dark" />
+                </div>
+                <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2 font-luxury">
+                  {stat.number}
+                </div>
+                <div className="text-gray-300 font-medium">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-luxury-dark relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose BenLuxuryAgency?
+          <div className="text-center mb-20 animate-fade-in-up">
+            <h2 className="text-4xl md:text-6xl font-luxury font-bold text-white mb-6">
+              <span className="bg-gradient-to-r from-gold-300 via-gold-500 to-gold-300 bg-clip-text text-transparent">
+                Why Choose Excellence?
+              </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Your trusted partner in luxury real estate investments across Israel
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Experience unparalleled luxury and investment opportunities with Israel's premier real estate agency
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="text-center group">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-lg mb-4 group-hover:bg-blue-600 transition-colors">
-                  <feature.icon className="h-8 w-8 text-blue-600 group-hover:text-white transition-colors" />
+              <div
+                key={index}
+                className="group relative bg-gradient-to-br from-luxury-charcoal to-luxury-dark rounded-2xl p-8 hover:shadow-luxury transition-all duration-500 transform hover:-translate-y-2 animate-scale-in border border-gold-500/20 hover:border-gold-500/40"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-gold-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${feature.color} rounded-xl mb-6 group-hover:shadow-gold transition-all duration-300 transform group-hover:scale-110 relative z-10`}>
+                  <feature.icon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                
+                <h3 className="text-xl font-bold text-white mb-4 relative z-10 group-hover:text-gold-300 transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">
+                
+                <p className="text-gray-400 leading-relaxed relative z-10 group-hover:text-gray-300 transition-colors">
                   {feature.description}
+                </p>
+
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-24 bg-gradient-to-br from-luxury-charcoal via-luxury-dark to-luxury-charcoal relative overflow-hidden">
+        <div className="absolute inset-0 bg-hero-pattern opacity-5"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16 animate-fade-in-up">
+            <h2 className="text-4xl md:text-5xl font-luxury font-bold text-white mb-6">
+              <span className="bg-gradient-to-r from-gold-300 via-gold-500 to-gold-300 bg-clip-text text-transparent">
+                Client Excellence Stories
+              </span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              Discover why discerning clients choose BenLuxuryAgency for their luxury real estate investments
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-luxury-charcoal to-luxury-dark rounded-2xl p-8 hover:shadow-luxury transition-all duration-500 transform hover:-translate-y-2 border border-gold-500/20 hover:border-gold-500/40 animate-scale-in"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                <div className="flex items-center mb-6">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-16 h-16 rounded-full object-cover border-2 border-gold-500 mr-4"
+                  />
+                  <div>
+                    <h4 className="text-white font-bold text-lg">{testimonial.name}</h4>
+                    <p className="text-gold-400 text-sm">{testimonial.role}</p>
+                  </div>
+                </div>
+                
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-gold-500 fill-current" />
+                  ))}
+                </div>
+                
+                <p className="text-gray-300 italic leading-relaxed">
+                  "{testimonial.quote}"
                 </p>
               </div>
             ))}
@@ -97,21 +291,37 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Find Your Dream Property?
+      <section className="py-24 bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 relative overflow-hidden">
+        <div className="absolute inset-0 bg-hero-pattern opacity-10"></div>
+        <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full animate-float"></div>
+        <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full animate-float" style={{ animationDelay: '3s' }}></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-4xl md:text-6xl font-luxury font-bold text-luxury-dark mb-6 animate-fade-in-up">
+            Ready to Own Luxury?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
-            Explore our exclusive collection of luxury properties in Israel
+          <p className="text-xl mb-10 text-luxury-dark/80 max-w-3xl mx-auto leading-relaxed animate-fade-in-up">
+            Discover our exclusive collection of off-plan luxury properties in Israel's most prestigious locations
           </p>
-          <Link
-            to="/projects"
-            className="inline-flex items-center px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors group"
-          >
-            {t('see_projects')}
-            <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'} group-hover:translate-x-1 transition-transform`} />
-          </Link>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center animate-scale-in">
+            <Link
+              to="/projects"
+              className="group inline-flex items-center px-10 py-4 bg-luxury-dark text-gold-400 rounded-lg font-bold text-lg hover:bg-luxury-charcoal transition-all duration-300 transform hover:scale-105 shadow-3d hover:shadow-luxury"
+            >
+              <Building2 className={`h-5 w-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+              {t('see_projects')}
+              <ArrowRight className={`h-5 w-5 ${isRTL ? 'mr-2 rotate-180' : 'ml-2'} group-hover:translate-x-1 transition-transform`} />
+            </Link>
+            
+            <Link
+              to="/contact"
+              className="inline-flex items-center px-10 py-4 border-2 border-luxury-dark text-luxury-dark rounded-lg font-bold text-lg hover:bg-luxury-dark hover:text-gold-400 transition-all duration-300 transform hover:scale-105"
+            >
+              <Phone className={`h-5 w-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+              Schedule Consultation
+            </Link>
+          </div>
         </div>
       </section>
     </div>
