@@ -50,15 +50,15 @@ const Projects: React.FC = () => {
   const getMockProjects = (): Project[] => [
     {
       id: '1',
-      project_name: 'David Residence',
-      city: 'Jerusalem',
+      project_name: 'מגורי דוד - David Residence',
+      city: 'ירושלים',
       slug: 'david-residence',
-      short_description_en: 'Ultra-luxury residential complex in Jerusalem\'s most prestigious neighborhood with panoramic city views, premium amenities, and world-class finishes.',
-      long_description_en: 'David Residence represents the pinnacle of luxury living in Jerusalem. This exclusive development features modern architecture, premium finishes, and world-class amenities including a rooftop infinity pool, private spa, and 24/7 concierge service.',
+      short_description_en: 'פרויקט יוקרה יוצא דופן בלב ירושלים עם נוף פנורמי מרהיב, אמניטיז ברמה הגבוהה ביותר וגימורים איכותיים. 12 יחידות דיור בלעדיות בשכונת טלביה המיוחדת.',
+      long_description_en: 'מגורי דוד מייצגים את פסגת המגורים היוקרתיים בירושלים. הפרויקט הבלעדי הזה כולל ארכיטקטורה מודרנית, גימורים ברמה הגבוהה ביותר ואמניטיז ברמה עולמית כולל בריכת אינפיניטי על הגג, ספא פרטי ושירות קונסיירז׳ 24/7. הפרויקט ממוקם ברחוב עזה היוקרתי, במרחק הליכה מרחוב ממילא ומהעיר העתיקה.',
       images: [
         'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       map_embed_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3381.3!2d35.2137!3d31.7683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDQ2JzA2LjAiTiAzNcKwMTInNDkuMyJF!5e0!3m2!1sen!2sil!4v1234567890123!5m2!1sen!2sil',
       pdf_url: '#',
@@ -67,15 +67,15 @@ const Projects: React.FC = () => {
     },
     {
       id: '2',
-      project_name: 'Tel Aviv Riviera',
-      city: 'Tel Aviv',
+      project_name: 'ריביירה תל אביב - Tel Aviv Riviera',
+      city: 'תל אביב',
       slug: 'tel-aviv-riviera',
-      short_description_en: 'Exclusive beachfront luxury apartments with direct Mediterranean access, private beach club, and unparalleled sea views from every residence.',
-      long_description_en: 'Tel Aviv Riviera represents the pinnacle of coastal living. Located on Tel Aviv\'s prestigious coastline, this development offers unparalleled luxury with breathtaking Mediterranean views, private beach access, and world-class amenities.',
+      short_description_en: 'דירות יוקרה בחזית הים עם גישה ישירה לחוף הים התיכון, מועדון חוף פרטי ונוף ים בלתי מוגבל מכל דירה. 20 יחידות דיור יוקרתיות על קו החוף.',
+      long_description_en: 'ריביירה תל אביב מייצגת את פסגת החיים על חוף הים. הפרויקט ממוקם על קו החוף היוקרתי של תל אביב ומציע יוקרה ללא פשרות עם נוף ים תיכון עוצר נשימה, גישה פרטית לחוף ואמניטיז ברמה עולמית. הפרויקט כולל מועדון חוף פרטי, בריכת אינפיניטי, חדר כושר מתקדם וספא יוקרתי.',
       images: [
         'https://images.pexels.com/photos/1404819/pexels-photo-1404819.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1571453/pexels-photo-1571453.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       map_embed_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3379.4!2d34.7818!3d32.0853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDA1JzA3LjEiTiAzNMKwNDYnNTQuNSJF!5e0!3m2!1sen!2sil!4v1234567890123!5m2!1sen!2sil',
       pdf_url: '#',
@@ -84,15 +84,15 @@ const Projects: React.FC = () => {
     },
     {
       id: '3',
-      project_name: 'Haifa Bay Tower',
-      city: 'Haifa',
+      project_name: 'מגדל מפרץ חיפה - Haifa Bay Tower',
+      city: 'חיפה',
       slug: 'haifa-bay-tower',
-      short_description_en: 'Iconic high-rise tower offering spectacular bay views, cutting-edge smart home technology, and premium facilities in Israel\'s northern capital.',
-      long_description_en: 'Haifa Bay Tower stands as a beacon of modern luxury in Israel\'s northern capital. This architectural marvel offers residents unprecedented views of the Mediterranean and Mount Carmel, with premium amenities and sophisticated design.',
+      short_description_en: 'מגדל איקוני המציע נוף מפרץ מרהיב, טכנולוגיית בית חכם מתקדמת ומתקנים יוקרתיים בבירת הצפון. 15 יחידות דיור יוקרתיות בקומות הגבוהות.',
+      long_description_en: 'מגדל מפרץ חיפה מתנשא כמגדלור של יוקרה מודרנית בבירת הצפון של ישראל. הפלא הארכיטקטוני הזה מציע לתושבים נוף בלתי מוגבל של הים התיכון והר הכרמל, עם אמניטיז יוקרתיים ועיצוב מתוחכם. המגדל כולל לובי מפואר, בריכה על הגג, חדר כושר מתקדם וחניון תת קרקעי.',
       images: [
         'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       map_embed_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3353.2!2d34.9896!3d32.7940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDQ3JzM4LjQiTiAzNMKwNTknMjIuNiJF!5e0!3m2!1sen!2sil!4v1234567890123!5m2!1sen!2sil',
       pdf_url: '#',
@@ -101,15 +101,15 @@ const Projects: React.FC = () => {
     },
     {
       id: '4',
-      project_name: 'Ashdod Luxe Garden',
-      city: 'Ashdod',
+      project_name: 'גן היוקרה אשדוד - Ashdod Luxe Garden',
+      city: 'אשדוד',
       slug: 'ashdod-luxe-garden',
-      short_description_en: 'Exclusive garden apartments with private outdoor spaces, resort-style amenities, and contemporary design in a tranquil luxury community.',
-      long_description_en: 'Ashdod Luxe Garden offers a unique residential experience combining urban convenience with natural tranquility. Each apartment features private gardens and premium amenities in a beautifully landscaped setting.',
+      short_description_en: 'דירות גן בלעדיות עם חצרות פרטיות, אמניטיז ברמת אתר נופש ועיצוב עכשווי בקהילה יוקרתית ושקטה. 18 יחידות דיור עם גינות פרטיות.',
+      long_description_en: 'גן היוקרה אשדוד מציע חוויית מגורים ייחודית המשלבת נוחות עירונית עם שלווה טבעית. כל דירה כוללת גינה פרטית ואמניטיז יוקרתיים בסביבה מעוצבת ומטופחת. הפרויקט כולל פארק מרכזי, בריכת שחייה, מגרשי טניס ומועדון דיירים יוקרתי.',
       images: [
         'https://images.pexels.com/photos/1571471/pexels-photo-1571471.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1396118/pexels-photo-1396118.jpeg?auto=compress&cs=tinysrgb&w=1200',
-        'https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg?auto=compress&cs=tinysrgb&w=1200'
+        'https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/1396118/pexels-photo-1396118.jpeg?auto=compress&cs=tinysrgb&w=1200'
       ],
       map_embed_url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3392.8!2d34.6496!3d31.7943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDQ3JzM5LjUiTiAzNMKwMzgnNTguNiJF!5e0!3m2!1sen!2sil!4v1234567890123!5m2!1sen!2sil',
       pdf_url: '#',

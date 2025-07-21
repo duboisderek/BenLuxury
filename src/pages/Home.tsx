@@ -11,19 +11,19 @@ const Home: React.FC = () => {
 
   const heroSlides = [
     {
-      image: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920',
-      title: 'Luxury Living Redefined',
-      subtitle: 'Exclusive off-plan properties in prime Israeli locations'
+      image: 'https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      title: 'מגורי יוקרה מחדש',
+      subtitle: 'נכסים בלעדיים על הנייר במיקומים המובחרים בישראל'
     },
     {
-      image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920',
-      title: 'Investment Excellence',
-      subtitle: 'Premium real estate opportunities with guaranteed returns'
+      image: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1920',
+      title: 'מצוינות השקעה',
+      subtitle: 'הזדמנויות נדל״ן יוקרתיות עם תשואה מובטחת'
     },
     {
       image: 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1920',
-      title: 'Architectural Masterpieces',
-      subtitle: 'Where modern design meets timeless elegance'
+      title: 'יצירות מופת ארכיטקטוניות',
+      subtitle: 'כאשר עיצוב מודרני פוגש אלגנטיות נצחית'
     }
   ];
 
@@ -37,57 +37,57 @@ const Home: React.FC = () => {
   const features = [
     {
       icon: Crown,
-      title: 'Exclusive Properties',
-      description: 'Hand-selected luxury developments in Israel\'s most prestigious locations',
+      title: 'נכסים בלעדיים',
+      description: 'פרויקטי יוקרה נבחרים במיקומים היוקרתיים ביותר בישראל',
       color: 'from-gold-400 to-gold-600'
     },
     {
       icon: Gem,
-      title: 'Premium Locations',
-      description: 'Prime real estate in Jerusalem, Tel Aviv, Haifa, and emerging luxury districts',
+      title: 'מיקומים מובחרים',
+      description: 'נדל״ן יוקרתי בירושלים, תל אביב, חיפה ואזורי יוקרה מתפתחים',
       color: 'from-blue-400 to-blue-600'
     },
     {
       icon: Shield,
-      title: 'Secure Investment',
-      description: 'Guaranteed returns with comprehensive legal and financial protection',
+      title: 'השקעה בטוחה',
+      description: 'תשואה מובטחת עם הגנה משפטית ופיננסית מקיפה',
       color: 'from-purple-400 to-purple-600'
     },
     {
       icon: TrendingUp,
-      title: 'Market Leadership',
-      description: 'Over 15 years of excellence in luxury real estate development',
+      title: 'מובילות בשוק',
+      description: 'מעל 15 שנות מצוינות בפיתוח נדל״ן יוקרה',
       color: 'from-green-400 to-green-600'
     }
   ];
 
   const stats = [
-    { number: '500+', label: 'Luxury Properties Sold', icon: Building2 },
-    { number: '98%', label: 'Client Satisfaction', icon: Star },
-    { number: '15+', label: 'Years of Excellence', icon: Award },
-    { number: '50+', label: 'Countries Served', icon: Globe }
+    { number: '500+', label: 'נכסי יוקרה נמכרו', icon: Building2 },
+    { number: '98%', label: 'שביעות רצון לקוחות', icon: Star },
+    { number: '15+', label: 'שנות מצוינות', icon: Award },
+    { number: '50+', label: 'מדינות בשירות', icon: Globe }
   ];
 
   const testimonials = [
     {
-      name: 'David Goldstein',
-      role: 'Real Estate Investor',
+      name: 'דוד גולדשטיין',
+      role: 'משקיע נדל״ן',
       image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150',
-      quote: 'BenLuxuryAgency delivered beyond expectations. The investment returns have been exceptional.',
+      quote: 'בן לוקסורי אג׳נסי עברו את כל הציפיות. התשואות על ההשקעה היו יוצאות דופן.',
       rating: 5
     },
     {
-      name: 'Sarah Cohen',
-      role: 'Property Owner',
+      name: 'שרה כהן',
+      role: 'בעלת נכס',
       image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150',
-      quote: 'Professional service from start to finish. They made our dream home a reality.',
+      quote: 'שירות מקצועי מתחילת הדרך ועד הסוף. הם הפכו את בית החלומות שלנו למציאות.',
       rating: 5
     },
     {
-      name: 'Michael Levy',
-      role: 'International Buyer',
+      name: 'מיכאל לוי',
+      role: 'קונה בינלאומי',
       image: 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=150',
-      quote: 'The multilingual support and expertise made the entire process seamless.',
+      quote: 'התמיכה הרב-לשונית והמומחיות הפכו את כל התהליך לחלק ופשוט.',
       rating: 5
     }
   ];
