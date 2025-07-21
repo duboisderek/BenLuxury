@@ -20,19 +20,27 @@ const Projects: React.FC = () => {
 
   const fetchProjects = async () => {
     try {
-      const { data, error } = await supabase
-        .from('projects')
-        .select('*')
-        .order('created_at', { ascending: false });
+      // Try to fetch from Supabase, but fallback to mock data if database isn't set up
+      try {
+        const { data, error } = await supabase
+          .from('projects')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-      if (error) {
-        console.error('Error fetching projects:', error);
+        if (error) {
+          // If table doesn't exist or other database error, use mock data
+          console.warn('Database not available, using mock data:', error.message);
+          setProjects(getMockProjects());
+        } else {
+          setProjects(data || getMockProjects());
+        }
+      } catch (dbError) {
+        // Network or connection error, use mock data
+        console.warn('Database connection failed, using mock data');
         setProjects(getMockProjects());
-      } else {
-        setProjects(data || []);
       }
     } catch (error) {
-      console.error('Error fetching projects:', error);
+      console.warn('Fallback to mock data due to error:', error);
       setProjects(getMockProjects());
     } finally {
       setLoading(false);
