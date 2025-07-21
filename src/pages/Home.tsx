@@ -12,18 +12,18 @@ const Home: React.FC = () => {
   const heroSlides = [
     {
       image: 'https://images.pexels.com/photos/2581922/pexels-photo-2581922.jpeg?auto=compress&cs=tinysrgb&w=1920',
-      title: 'מגורי יוקרה מחדש',
-      subtitle: 'נכסים בלעדיים על הנייר במיקומים המובחרים בישראל'
+      title: 'Luxury Living Redefined',
+      subtitle: 'Exclusive off-plan properties in Israel\'s most prestigious locations'
     },
     {
       image: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1920',
-      title: 'מצוינות השקעה',
-      subtitle: 'הזדמנויות נדל״ן יוקרתיות עם תשואה מובטחת'
+      title: 'Investment Excellence',
+      subtitle: 'Premium real estate opportunities with guaranteed returns'
     },
     {
       image: 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1920',
-      title: 'יצירות מופת ארכיטקטוניות',
-      subtitle: 'כאשר עיצוב מודרני פוגש אלגנטיות נצחית'
+      title: 'Architectural Masterpieces',
+      subtitle: 'Where modern design meets timeless elegance'
     }
   ];
 
