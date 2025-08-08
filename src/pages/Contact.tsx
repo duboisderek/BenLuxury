@@ -156,13 +156,13 @@ const Contact: React.FC = () => {
             <div className="w-20 h-20 bg-gold-gradient rounded-full flex items-center justify-center mx-auto mb-6 animate-glow">
               <Check className="h-10 w-10 text-luxury-dark" />
             </div>
-            <h2 className="text-3xl font-luxury font-bold text-white mb-4">Thank You!</h2>
+            <h2 className="text-3xl font-luxury font-bold text-white mb-4">{t('thank_you')}</h2>
             <p className="text-gray-300 mb-8 leading-relaxed">{t('form_success')}</p>
             <button
               onClick={() => setSuccess(false)}
               className="w-full bg-gold-gradient text-luxury-dark rounded-lg py-3 px-4 font-bold hover:shadow-gold transition-all transform hover:scale-105"
             >
-              Send Another Message
+              {t('send_another_message')}
             </button>
           </div>
         </div>
@@ -182,7 +182,7 @@ const Contact: React.FC = () => {
           <div className="text-center animate-fade-in-up">
             <div className="mb-6">
               <span className="inline-block px-6 py-2 bg-gold-gradient text-luxury-dark font-semibold rounded-full text-sm uppercase tracking-wider animate-glow">
-                Luxury Consultation
+                {t('luxury_consultation')}
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-luxury font-bold text-white mb-6">
@@ -191,7 +191,7 @@ const Contact: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Connect with our team of luxury real estate experts for personalized service and exclusive property access
+              {t('contact_hero_desc')}
             </p>
           </div>
         </div>
@@ -204,12 +204,11 @@ const Contact: React.FC = () => {
             <div className="animate-fade-in-up">
               <h2 className="text-3xl font-luxury font-bold text-white mb-6">
                 <span className="bg-gradient-to-r from-gold-300 to-gold-500 bg-clip-text text-transparent">
-                  Luxury Real Estate Excellence
+                  {t('luxury_real_estate_excellence')}
                 </span>
               </h2>
               <p className="text-gray-300 mb-8 leading-relaxed text-lg">
-                Whether you're seeking your dream luxury residence or exploring premium investment opportunities, 
-                our dedicated team provides unparalleled expertise in Israel's most exclusive real estate markets.
+                {t('home_description')}
               </p>
             </div>
 
@@ -257,22 +256,22 @@ const Contact: React.FC = () => {
 
             {/* Office Hours */}
             <div className="bg-gradient-to-br from-gold-500/10 to-gold-600/5 rounded-2xl p-6 border border-gold-500/30">
-              <h3 className="font-luxury font-bold text-gold-400 mb-4 text-xl">Consultation Hours</h3>
+              <h3 className="font-luxury font-bold text-gold-400 mb-4 text-xl">{t('consultation_hours')}</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Sunday - Thursday:</span>
+                  <span className="text-gray-300">{t('sunday_thursday')}</span>
                   <span className="font-medium text-white">9:00 AM - 8:00 PM</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Friday:</span>
+                  <span className="text-gray-300">{t('friday')}</span>
                   <span className="font-medium text-white">9:00 AM - 3:00 PM</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-300">Saturday:</span>
-                  <span className="font-medium text-white">By Appointment</span>
+                  <span className="text-gray-300">{t('saturday')}</span>
+                  <span className="font-medium text-white">{t('by_appointment')}</span>
                 </div>
                 <div className="pt-2 border-t border-gold-500/20">
-                  <span className="text-gold-400 text-xs">24/7 Emergency Concierge Available</span>
+                  <span className="text-gold-400 text-xs">{t('emergency_concierge')}</span>
                 </div>
               </div>
             </div>
@@ -283,11 +282,11 @@ const Contact: React.FC = () => {
             <div className="mb-8">
               <h2 className="text-3xl font-luxury font-bold text-white mb-4">
                 <span className="bg-gradient-to-r from-gold-300 to-gold-500 bg-clip-text text-transparent">
-                  Private Consultation
+                  {t('private_consultation')}
                 </span>
               </h2>
               <p className="text-gray-400">
-                Schedule your exclusive consultation with our luxury real estate specialists
+                {t('schedule_your_consultation')}
               </p>
             </div>
 
@@ -305,7 +304,7 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-luxury-dark border border-gold-500/30 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent text-white placeholder-gray-500 transition-all"
-                    placeholder="Enter your full name"
+                    placeholder={t('placeholder_full_name')}
                   />
                 </div>
 
@@ -321,7 +320,7 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-luxury-dark border border-gold-500/30 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent text-white placeholder-gray-500 transition-all"
-                    placeholder="Enter your email"
+                    placeholder={t('placeholder_email')}
                   />
                 </div>
               </div>
@@ -339,7 +338,7 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-luxury-dark border border-gold-500/30 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent text-white placeholder-gray-500 transition-all"
-                    placeholder="Enter your phone number"
+                    placeholder={t('placeholder_phone')}
                   />
                 </div>
 
@@ -373,7 +372,7 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-luxury-dark border border-gold-500/30 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent text-white transition-all"
                 >
-                  <option value="">Select a luxury project</option>
+                  <option value="">{t('select_project_placeholder')}</option>
                   {projects.map((project) => (
                     <option key={project.id} value={project.slug}>
                       {project.project_name}
@@ -393,7 +392,7 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-luxury-dark border border-gold-500/30 rounded-lg focus:ring-2 focus:ring-gold-500 focus:border-transparent text-white placeholder-gray-500 transition-all resize-none"
-                  placeholder="Tell us about your luxury property requirements..."
+                  placeholder={t('placeholder_message')}
                 />
               </div>
 
@@ -418,9 +417,7 @@ const Contact: React.FC = () => {
                 )}
               </button>
 
-              <p className="text-center text-gray-500 text-sm">
-                By submitting this form, you agree to our privacy policy and terms of service.
-              </p>
+              <p className="text-center text-gray-500 text-sm">{t('form_disclaimer')}</p>
             </form>
           </div>
         </div>

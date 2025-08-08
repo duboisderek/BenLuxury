@@ -142,7 +142,7 @@ const Projects: React.FC = () => {
           <div className="text-center animate-fade-in-up">
             <div className="mb-6">
               <span className="inline-block px-6 py-2 bg-gold-gradient text-luxury-dark font-semibold rounded-full text-sm uppercase tracking-wider animate-glow">
-                Exclusive Portfolio
+                {t('exclusive_portfolio')}
               </span>
             </div>
             <h1 className="text-5xl md:text-7xl font-luxury font-bold text-white mb-6">
@@ -151,7 +151,7 @@ const Projects: React.FC = () => {
               </span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Discover our exclusive collection of off-plan luxury properties in Israel's most prestigious locations. Each project represents the pinnacle of architectural excellence and investment opportunity.
+              {t('projects_hero_desc')}
             </p>
           </div>
         </div>
@@ -163,7 +163,7 @@ const Projects: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <Filter className="h-5 w-5 text-gold-400" />
-              <span className="text-gray-300 font-medium">Filter by Location:</span>
+              <span className="text-gray-300 font-medium">{t('filter_by_location')}</span>
             </div>
             <div className="flex flex-wrap gap-3">
               {cities.map((city) => (
@@ -176,7 +176,7 @@ const Projects: React.FC = () => {
                       : 'bg-luxury-charcoal text-gray-300 border border-gold-500/30 hover:border-gold-500/60 hover:text-gold-400'
                   }`}
                 >
-                  {city === 'all' ? 'All Cities' : city}
+                  {city === 'all' ? t('all_cities') : city}
                 </button>
               ))}
             </div>
@@ -206,7 +206,7 @@ const Projects: React.FC = () => {
                   {/* Floating Badge */}
                   <div className="absolute top-6 left-6">
                     <span className="inline-block px-4 py-2 bg-gold-gradient text-luxury-dark font-bold rounded-full text-sm uppercase tracking-wider animate-glow">
-                      Off-Plan Exclusive
+                      {t('off_plan_exclusive')}
                     </span>
                   </div>
 
@@ -279,16 +279,16 @@ const Projects: React.FC = () => {
                 <Building2 className="h-12 w-12 text-luxury-dark" />
               </div>
               <h3 className="text-2xl font-luxury font-bold text-white mb-4">
-                No projects found
+                {t('no_projects')}
               </h3>
               <p className="text-gray-400 mb-6">
-                Check back soon for new luxury developments in this location.
+                {t('no_projects_desc')}
               </p>
               <button
                 onClick={() => setFilter('all')}
                 className="px-6 py-3 bg-gold-gradient text-luxury-dark rounded-lg font-bold hover:shadow-gold transition-all transform hover:scale-105"
               >
-                View All Projects
+                {t('view_all_projects')}
               </button>
             </div>
           )}
@@ -300,10 +300,10 @@ const Projects: React.FC = () => {
         <div className="absolute inset-0 bg-hero-pattern opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-luxury font-bold text-luxury-dark mb-6">
-            Ready to Invest in Luxury?
+            {t('ready_to_invest')}
           </h2>
           <p className="text-xl mb-8 text-luxury-dark/80 max-w-2xl mx-auto">
-            Schedule a private consultation with our luxury real estate experts
+            {t('schedule_consultation')}
           </p>
           <Link
             to="/contact"

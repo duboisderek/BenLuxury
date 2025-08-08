@@ -123,18 +123,18 @@ const Home: React.FC = () => {
             <div className="max-w-4xl animate-fade-in-up">
               <div className="mb-6">
                 <span className="inline-block px-6 py-2 bg-gold-gradient text-luxury-dark font-semibold rounded-full text-sm uppercase tracking-wider animate-glow">
-                  Luxury Real Estate Excellence
+                  {t('luxury_real_estate_excellence')}
                 </span>
               </div>
               
               <h1 className="text-5xl md:text-7xl font-luxury font-bold text-white mb-6 leading-tight">
                 <span className="bg-gradient-to-r from-white via-gold-300 to-white bg-clip-text text-transparent">
-                  {heroSlides[currentSlide].title}
+                  {currentSlide === 0 ? t('hero1_title') : currentSlide === 1 ? t('hero2_title') : t('hero3_title')}
                 </span>
               </h1>
               
               <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl leading-relaxed">
-                {heroSlides[currentSlide].subtitle}
+                {currentSlide === 0 ? t('hero1_subtitle') : currentSlide === 1 ? t('hero2_subtitle') : t('hero3_subtitle')}
               </p>
               
               <p className="text-lg mb-10 text-gray-300 max-w-3xl leading-relaxed">
@@ -248,11 +248,11 @@ const Home: React.FC = () => {
           <div className="text-center mb-16 animate-fade-in-up">
             <h2 className="text-4xl md:text-5xl font-luxury font-bold text-white mb-6">
               <span className="bg-gradient-to-r from-gold-300 via-gold-500 to-gold-300 bg-clip-text text-transparent">
-                Client Excellence Stories
+                {t('client_excellence_stories')}
               </span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Discover why discerning clients choose BenLuxuryAgency for their luxury real estate investments
+              {t('home_description')}
             </p>
           </div>
 
@@ -298,10 +298,10 @@ const Home: React.FC = () => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-4xl md:text-6xl font-luxury font-bold text-luxury-dark mb-6 animate-fade-in-up">
-            Ready to Own Luxury?
+            {t('ready_to_own_luxury')}
           </h2>
           <p className="text-xl mb-10 text-luxury-dark/80 max-w-3xl mx-auto leading-relaxed animate-fade-in-up">
-            Discover our exclusive collection of off-plan luxury properties in Israel's most prestigious locations
+            {t('home_cta_desc')}
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-scale-in">

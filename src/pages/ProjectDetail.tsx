@@ -190,7 +190,7 @@ const ProjectDetail: React.FC = () => {
             className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
           >
             <ArrowLeft className={`h-4 w-4 ${isRTL ? 'ml-2 rotate-180' : 'mr-2'}`} />
-            Back to Projects
+            {t('back_to_projects')}
           </Link>
         </div>
       </div>
@@ -248,21 +248,21 @@ const ProjectDetail: React.FC = () => {
                 className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 <Download className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                Download Brochure
+                {t('download_brochure')}
               </a>
               <button className="inline-flex items-center px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
                 <Eye className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                3D Virtual Tour
+                {t('virtual_tour')}
               </button>
             </div>
 
             {/* Contact CTA */}
             <div className="bg-blue-50 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Interested in this project?
+                {t('interested_project')}
               </h3>
               <p className="text-gray-600 mb-4">
-                Get in touch with our team for more information and to schedule a viewing.
+                {t('contact_cta')}
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -277,7 +277,7 @@ const ProjectDetail: React.FC = () => {
                   className="inline-flex items-center px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
                 >
                   <Phone className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  Call Now
+                  {t('call_now')}
                 </a>
               </div>
             </div>
@@ -286,7 +286,7 @@ const ProjectDetail: React.FC = () => {
 
         {/* Map Section */}
         <div className="mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Location</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('location')}</h2>
           <div className="h-96 rounded-lg overflow-hidden">
             <iframe
               src={project.map_embed_url}
