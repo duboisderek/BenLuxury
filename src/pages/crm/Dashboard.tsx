@@ -16,6 +16,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     fetchDashboardData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchDashboardData = async () => {
@@ -27,6 +28,7 @@ const Dashboard: React.FC = () => {
         .order('created_at', { ascending: false });
 
       if (clientsError) {
+        // eslint-disable-next-line no-console
         console.error('Error fetching clients:', clientsError);
         // Use mock data
         const mockClients = getMockClients();
@@ -42,9 +44,6 @@ const Dashboard: React.FC = () => {
         setRecentClients(clientData.slice(0, 5));
         
         // Calculate stats
-        const today = new Date();
-        const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
-        
         setStats({
           totalClients: clientData.length,
           newClients: clientData.filter(c => c.status === 'new').length,
@@ -53,6 +52,7 @@ const Dashboard: React.FC = () => {
         });
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching dashboard data:', error);
       // Use mock data
       const mockClients = getMockClients();

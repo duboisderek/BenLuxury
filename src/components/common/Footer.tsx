@@ -1,11 +1,9 @@
 import React from 'react';
-import { Building2, Mail, Phone, MapPin, Crown, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Crown, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
-import { useLanguage } from '../../context/LanguageContext';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
-  const { isRTL } = useLanguage();
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },

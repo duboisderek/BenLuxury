@@ -16,6 +16,7 @@ const Projects: React.FC = () => {
 
   useEffect(() => {
     fetchProjects();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchProjects = async () => {
@@ -34,13 +35,13 @@ const Projects: React.FC = () => {
         } else {
           setProjects(data || getMockProjects());
         }
-      } catch (dbError) {
+      } catch {
         // Network or connection error, use mock data
         console.warn('Database connection failed, using mock data');
         setProjects(getMockProjects());
       }
-    } catch (error) {
-      console.warn('Fallback to mock data due to error:', error);
+    } catch (_error) {
+      console.warn('Fallback to mock data due to error:', _error);
       setProjects(getMockProjects());
     } finally {
       setLoading(false);

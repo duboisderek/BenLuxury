@@ -15,6 +15,8 @@ import Contact from './pages/Contact';
 import Login from './pages/crm/Login';
 import Dashboard from './pages/crm/Dashboard';
 import Clients from './pages/crm/Clients';
+import Appointments from './pages/crm/Appointments';
+import Settings from './pages/crm/Settings';
 
 const App: React.FC = () => {
   return (
@@ -64,8 +66,8 @@ const CRMRoutes: React.FC = () => {
       <Routes>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="clients" element={<Clients />} />
-        <Route path="appointments" element={<div>Appointments - Coming Soon</div>} />
-        <Route path="settings" element={<div>Settings - Coming Soon</div>} />
+        <Route path="appointments" element={<Appointments />} />
+        <Route path="settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="/crm/dashboard" replace />} />
       </Routes>
     </CRMLayout>

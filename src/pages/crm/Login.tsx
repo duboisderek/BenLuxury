@@ -30,9 +30,11 @@ const Login: React.FC = () => {
       }
 
       navigate('/crm/dashboard');
-    } catch (error: any) {
-      console.error('Error logging in:', error);
-      setError(error.message || 'Login failed. Please try again.');
+    } catch (err: unknown) {
+      // eslint-disable-next-line no-console
+      console.error('Error logging in:', err);
+      const message = typeof err === 'object' && err && 'message' in err ? String((err as { message?: string }).message) : 'Login failed. Please try again.';
+      setError(message);
     } finally {
       setLoading(false);
     }

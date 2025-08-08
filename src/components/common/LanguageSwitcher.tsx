@@ -1,12 +1,10 @@
 import React from 'react';
 import { Globe } from 'lucide-react';
 import { useLanguage } from '../../context/LanguageContext';
-import { useTranslation } from '../../hooks/useTranslation';
 import type { Language } from '../../types';
 
 const LanguageSwitcher: React.FC = () => {
   const { language, setLanguage } = useLanguage();
-  const { t } = useTranslation();
 
   const languages = [
     { code: 'en' as Language, name: 'English', flag: '🇺🇸' },

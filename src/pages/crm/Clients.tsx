@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, Download, Plus, Eye, Edit, Trash2 } from 'lucide-react';
+import { Search, Download, Eye, Edit, Trash2 } from 'lucide-react';
 import { supabase } from '../../utils/supabase';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 import type { Client } from '../../types';
@@ -14,10 +14,12 @@ const Clients: React.FC = () => {
 
   useEffect(() => {
     fetchClients();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     filterClients();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clients, searchTerm, statusFilter, languageFilter]);
 
   const fetchClients = async () => {
@@ -28,6 +30,7 @@ const Clients: React.FC = () => {
         .order('created_at', { ascending: false });
 
       if (error) {
+        // eslint-disable-next-line no-console
         console.error('Error fetching clients:', error);
         // Use mock data
         setClients(getMockClients());
@@ -35,6 +38,7 @@ const Clients: React.FC = () => {
         setClients(data || []);
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error fetching clients:', error);
       // Use mock data
       setClients(getMockClients());
