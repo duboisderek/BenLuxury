@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Building2, Menu, X, Crown } from 'lucide-react';
+import { Menu, X, Crown } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
-import { useLanguage } from '../../context/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const Header: React.FC = () => {
   const { t } = useTranslation();
-  const { isRTL } = useLanguage();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

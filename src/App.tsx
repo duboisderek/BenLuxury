@@ -10,11 +10,15 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Terms from './pages/Terms';
 
 // CRM pages
 import Login from './pages/crm/Login';
 import Dashboard from './pages/crm/Dashboard';
 import Clients from './pages/crm/Clients';
+import Appointments from './pages/crm/Appointments';
+import Settings from './pages/crm/Settings';
 
 const App: React.FC = () => {
   return (
@@ -27,6 +31,8 @@ const App: React.FC = () => {
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:slug" element={<ProjectDetail />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="privacy" element={<PrivacyPolicy />} />
+            <Route path="terms" element={<Terms />} />
           </Route>
 
           {/* CRM routes */}
@@ -51,6 +57,8 @@ const PublicLayout: React.FC = () => {
           <Route path="projects" element={<Projects />} />
           <Route path="projects/:slug" element={<ProjectDetail />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="privacy" element={<PrivacyPolicy />} />
+          <Route path="terms" element={<Terms />} />
         </Routes>
       </main>
       <Footer />
@@ -64,8 +72,8 @@ const CRMRoutes: React.FC = () => {
       <Routes>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="clients" element={<Clients />} />
-        <Route path="appointments" element={<div>Appointments - Coming Soon</div>} />
-        <Route path="settings" element={<div>Settings - Coming Soon</div>} />
+        <Route path="appointments" element={<Appointments />} />
+        <Route path="settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="/crm/dashboard" replace />} />
       </Routes>
     </CRMLayout>

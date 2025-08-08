@@ -1,11 +1,9 @@
 import React from 'react';
-import { Building2, Mail, Phone, MapPin, Crown, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Crown, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
-import { useLanguage } from '../../context/LanguageContext';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
-  const { isRTL } = useLanguage();
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
@@ -104,13 +102,13 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-gold-400 transition-colors hover:translate-x-1 transform duration-200 inline-block">
-                  Investment Guide
+                <a href="/privacy" className="text-gray-300 hover:text-gold-400 transition-colors hover:translate-x-1 transform duration-200 inline-block">
+                  {t('footer_privacy')}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-gold-400 transition-colors hover:translate-x-1 transform duration-200 inline-block">
-                  Market Reports
+                <a href="/terms" className="text-gray-300 hover:text-gold-400 transition-colors hover:translate-x-1 transform duration-200 inline-block">
+                  {t('footer_terms')}
                 </a>
               </li>
             </ul>
@@ -141,11 +139,6 @@ const Footer: React.FC = () => {
               <li>
                 <a href="#" className="text-gray-300 hover:text-gold-400 transition-colors hover:translate-x-1 transform duration-200 inline-block">
                   Legal Services
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-gold-400 transition-colors hover:translate-x-1 transform duration-200 inline-block">
-                  {t('footer_privacy')}
                 </a>
               </li>
             </ul>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Building2, MapPin, Award, Users, Star, Crown, Gem, Shield, TrendingUp, Globe, Phone } from 'lucide-react';
+import { ArrowRight, Building2, Star, Crown, Gem, Shield, TrendingUp, Globe, Phone, Award } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [heroSlides.length]);
 
   const features = [
     {
