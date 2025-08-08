@@ -10,7 +10,7 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import { getCurrentUser, signOut } from '../../utils/supabase';
+import { getCurrentUser, signOut, isSupabaseConfigured } from '../../utils/supabase';
 import LoadingSpinner from '../common/LoadingSpinner';
 
 interface CRMLayoutProps {
@@ -20,7 +20,7 @@ interface CRMLayoutProps {
 const CRMLayout: React.FC<CRMLayoutProps> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [user, setUser] = useState<unknown>(null);
+  const [user, setUser] = useState<{ email?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -29,10 +29,18 @@ const CRMLayout: React.FC<CRMLayoutProps> = ({ children }) => {
       try {
         const currentUser = await getCurrentUser();
         if (!currentUser) {
-          navigate('/crm/login');
-          return;
+          // Dev guest mode
+          const isGuest = !isSupabaseConfigured && import.meta.env.DEV && localStorage.getItem('guest_auth') === '1';
+          if (isGuest) {
+            setUser({ email: 'guest@localhost' });
+          } else {
+            navigate('/crm/login');
+            return;
+          }
+        } else {
+          // @ts-expect-error supabase user type shape
+          setUser({ email: currentUser.email });
         }
-        setUser(currentUser);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error('Error checking auth:', error);
@@ -47,6 +55,7 @@ const CRMLayout: React.FC<CRMLayoutProps> = ({ children }) => {
 
   const handleSignOut = async () => {
     try {
+      localStorage.removeItem('guest_auth');
       await signOut();
       navigate('/crm/login');
     } catch (error) {
@@ -127,13 +136,11 @@ const CRMLayout: React.FC<CRMLayoutProps> = ({ children }) => {
           <div className="flex items-center gap-3 mb-3">
             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
               <span className="text-sm font-medium text-blue-600">
-                {/* @ts-expect-error optional user email */}
                 {user?.email?.charAt(0)?.toUpperCase?.()}
               </span>
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-gray-900 truncate">
-                {/* @ts-expect-error optional user email */}
                 {user?.email}
               </p>
             </div>

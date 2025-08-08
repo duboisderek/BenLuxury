@@ -1,28 +1,79 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Calendar, Plus, Search } from 'lucide-react';
+import { supabase, isSupabaseConfigured } from '../../utils/supabase';
 
 interface AppointmentItem {
   id: string;
-  title: string;
+  client_id: string;
+  title?: string; // not in DB; derived from client/project context
   date: string; // ISO date
-  time: string; // HH:mm
+  time: string; // HH:mm:ss or HH:mm
+  type: string;
   client: string;
   location: string;
+  notes?: string;
 }
 
 const Appointments: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [items, setItems] = useState<AppointmentItem[]>([]);
 
-  // Placeholder data; backend integration can replace this
-  const appointments: AppointmentItem[] = [
-    { id: '1', title: 'Consultation - David Residence', date: '2024-08-10', time: '14:00', client: 'John Doe', location: 'Tel Aviv Office' },
-    { id: '2', title: 'Site Visit - Tel Aviv Riviera', date: '2024-08-12', time: '10:30', client: 'Marie Dupont', location: 'Beachfront Lobby' },
-    { id: '3', title: 'Zoom Call - Investment Review', date: '2024-08-13', time: '18:00', client: 'David Cohen', location: 'Zoom' },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        if (!isSupabaseConfigured) {
+          setItems(getMockAppointments());
+          return;
+        }
 
-  const filtered = appointments.filter((a) =>
-    [a.title, a.client, a.location].some((v) => v.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
+        const { data: appts, error } = await supabase
+          .from('appointments')
+          .select('*')
+          .order('date', { ascending: true });
+        if (error) throw error;
+
+        const clientIds = Array.from(new Set((appts || []).map(a => a.client_id)));
+        let clientMap: Record<string, string> = {};
+        if (clientIds.length > 0) {
+          const { data: clients, error: clientsError } = await supabase
+            .from('clients')
+            .select('id, full_name')
+            .in('id', clientIds);
+          if (clientsError) throw clientsError;
+          clientMap = Object.fromEntries((clients || []).map(c => [c.id, c.full_name]));
+        }
+
+        const normalized: AppointmentItem[] = (appts || []).map(a => ({
+          id: a.id,
+          client_id: a.client_id,
+          date: a.date,
+          time: a.time,
+          type: a.type,
+          client: clientMap[a.client_id] || 'Unknown',
+          location: a.location || '',
+          notes: a.notes || '',
+          title: `${a.type === 'in_person' ? 'Meeting' : a.type === 'zoom' ? 'Zoom' : 'Call'} with ${clientMap[a.client_id] || 'Client'}`,
+        }));
+        setItems(normalized);
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error('Failed to load appointments, using mock', e);
+        setItems(getMockAppointments());
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const filtered = useMemo(() => {
+    const t = searchTerm.toLowerCase();
+    return items.filter((a) =>
+      [a.title || '', a.client, a.location, a.type].some((v) => v.toLowerCase().includes(t))
+    );
+  }, [items, searchTerm]);
 
   return (
     <div className="space-y-6">
@@ -56,36 +107,49 @@ const Appointments: React.FC = () => {
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {filtered.map((a) => (
-              <tr key={a.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded">
-                      <Calendar className="h-4 w-4" />
-                    </span>
-                    {a.title}
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{a.client}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{new Date(a.date).toLocaleDateString()}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{a.time}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{a.location}</td>
-              </tr>
-            ))}
+            {loading ? (
+              <tr><td className="px-6 py-6" colSpan={6}>Loading...</td></tr>
+            ) : filtered.length > 0 ? (
+              filtered.map((a) => (
+                <tr key={a.id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded">
+                        <Calendar className="h-4 w-4" />
+                      </span>
+                      {a.title || `${a.type} with ${a.client}`}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{a.client}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 capitalize">{a.type.replace('_', ' ')}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{new Date(a.date).toLocaleDateString()}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{a.time?.slice(0,5)}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{a.location}</td>
+                </tr>
+              ))
+            ) : (
+              <tr><td className="px-6 py-6 text-center text-gray-500" colSpan={6}>No appointments found.</td></tr>
+            )}
           </tbody>
         </table>
-        {filtered.length === 0 && (
-          <div className="p-6 text-center text-gray-500">No appointments found.</div>
-        )}
       </div>
     </div>
   );
 };
+
+function getMockAppointments(): AppointmentItem[] {
+  return [
+    { id: '1', client_id: 'c1', title: 'Consultation - David Residence', date: '2024-08-10', time: '14:00', type: 'in_person', client: 'John Doe', location: 'Tel Aviv Office' },
+    { id: '2', client_id: 'c2', title: 'Site Visit - Tel Aviv Riviera', date: '2024-08-12', time: '10:30', type: 'in_person', client: 'Marie Dupont', location: 'Beachfront Lobby' },
+    { id: '3', client_id: 'c3', title: 'Zoom Call - Investment Review', date: '2024-08-13', time: '18:00', type: 'zoom', client: 'David Cohen', location: 'Online' },
+  ];
+}
 
 export default Appointments;

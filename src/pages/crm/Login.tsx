@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Building2, Eye, EyeOff, LogIn } from 'lucide-react';
-import { supabase } from '../../utils/supabase';
+import { supabase, isSupabaseConfigured } from '../../utils/supabase';
 import LoadingSpinner from '../../components/common/LoadingSpinner';
 
 const Login: React.FC = () => {
@@ -20,6 +20,13 @@ const Login: React.FC = () => {
     setError('');
 
     try {
+      if (!isSupabaseConfigured && import.meta.env.DEV) {
+        // Guest login in dev without Supabase
+        localStorage.setItem('guest_auth', '1');
+        navigate('/crm/dashboard');
+        return;
+      }
+
       const { error } = await supabase.auth.signInWithPassword({
         email: formData.email,
         password: formData.password
@@ -49,7 +56,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center px-4">
-      <div className="max-w-md w-full">
+      <div className="max-w-md w/full">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           {/* Logo */}
           <div className="text-center mb-8">
@@ -123,6 +130,10 @@ const Login: React.FC = () => {
                 </>
               )}
             </button>
+
+            {!isSupabaseConfigured && import.meta.env.DEV && (
+              <p className="text-xs text-gray-500 text-center">Dev mode: Guest login will bypass auth.</p>
+            )}
           </form>
 
           {/* Demo Credentials */}

@@ -10,6 +10,8 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Terms from './pages/Terms';
 
 // CRM pages
 import Login from './pages/crm/Login';
@@ -29,6 +31,8 @@ const App: React.FC = () => {
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:slug" element={<ProjectDetail />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="privacy" element={<PrivacyPolicy />} />
+            <Route path="terms" element={<Terms />} />
           </Route>
 
           {/* CRM routes */}
@@ -53,6 +57,8 @@ const PublicLayout: React.FC = () => {
           <Route path="projects" element={<Projects />} />
           <Route path="projects/:slug" element={<ProjectDetail />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="privacy" element={<PrivacyPolicy />} />
+          <Route path="terms" element={<Terms />} />
         </Routes>
       </main>
       <Footer />

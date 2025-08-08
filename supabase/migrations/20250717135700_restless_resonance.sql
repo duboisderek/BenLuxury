@@ -284,7 +284,7 @@ INSERT INTO comments (client_id, author, comment_text) VALUES
 ((SELECT id FROM clients WHERE email = 'marie@example.com'), 'David Agent', 'Sent property brochure. Scheduled viewing for next week.'),
 ((SELECT id FROM clients WHERE email = 'david@example.com'), 'Sarah Agent', 'Discussed financing options. Ready to move forward with purchase.'),
 ((SELECT id FROM clients WHERE email = 'anna@example.com'), 'Michael Agent', 'Called but no answer. Will try again tomorrow.'),
-((SELECT id FROM clients WHERE email = 'michael@brown@example.com'), 'Sarah Agent', 'Deal closed successfully. Very satisfied client.');
+((SELECT id FROM clients WHERE email = 'michael@example.com'), 'Sarah Agent', 'Deal closed successfully. Very satisfied client.');
 
 -- Insert sample appointments
 INSERT INTO appointments (client_id, date, time, type, location, notes) VALUES
