@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Building2, Star, Crown, Gem, Shield, TrendingUp, Globe, Phone } from 'lucide-react';
+import { ArrowRight, Building2, Star, Crown, Gem, Shield, TrendingUp, Globe, Phone, Award } from 'lucide-react';
 import { useTranslation } from '../hooks/useTranslation';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
   const stats = [
     { number: '500+', label: 'נכסי יוקרה נמכרו', icon: Building2 },
     { number: '98%', label: 'שביעות רצון לקוחות', icon: Star },
-    { number: '15+', label: 'שנות מצוינות', icon: 'Award' },
+    { number: '15+', label: 'שנות מצוינות', icon: Award },
     { number: '50+', label: 'מדינות בשירות', icon: Globe }
   ];
 
@@ -185,7 +185,6 @@ const Home: React.FC = () => {
             {stats.map((stat, index) => (
               <div key={index} className="text-center group animate-scale-in" style={{ animationDelay: `${index * 0.2}s` }}>
                 <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full mb-4 group-hover:shadow-gold transition-all duration-300 transform group-hover:scale-110">
-                  {/* @ts-expect-error icon union */}
                   <stat.icon className="h-10 w-10 text-luxury-dark" />
                 </div>
                 <div className="text-4xl md:text-5xl font-bold text-gold-400 mb-2 font-luxury">
